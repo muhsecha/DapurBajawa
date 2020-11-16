@@ -1,11 +1,14 @@
 package com.example.dapurbajawa;
 
 public class HomeModel {
-    String  nama,notelp;
+    String  id, nama, tanggal, nohp, note, kode, status;
 
-    public HomeModel(String nama, String notelp) {
-        this.nama = nama;
-        this.notelp = notelp;
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNama() {
@@ -16,11 +19,43 @@ public class HomeModel {
         this.nama = nama;
     }
 
-    public String getNotelp() {
-        return notelp;
+    public String getTanggal() {
+        return tanggal;
     }
 
-    public void setNotelp(String notelp) {
-        this.notelp = notelp;
+    public void setTanggal(String tanggal) {
+        this.tanggal = tanggal;
+    }
+
+    public String getNohp() {
+        return nohp;
+    }
+
+    public void setNohp(String nohp) {
+        this.nohp = nohp;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getKode() {
+        return kode;
+    }
+
+    public void setKode(String kode) {
+        this.kode = kode;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }
