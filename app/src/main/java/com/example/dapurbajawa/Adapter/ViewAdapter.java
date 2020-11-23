@@ -1,4 +1,4 @@
-package com.example.dapurbajawa;
+package com.example.dapurbajawa.Adapter;
 
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -9,6 +9,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.dapurbajawa.DetailDataActivity;
+import com.example.dapurbajawa.Model.HomeModel;
+import com.example.dapurbajawa.R;
 
 import java.util.ArrayList;
 
@@ -40,7 +44,6 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewViewHolder
                 Intent intent = new Intent(holder.itemView.getContext(), DetailDataActivity.class);
                 intent.putExtra("id", dataList.get(position).getId());
                 intent.putExtra("nama", dataList.get(position).getNama());
-                intent.putExtra("tanggal", dataList.get(position).getTanggal());
                 intent.putExtra("nohp", dataList.get(position).getNohp());
                 intent.putExtra("note", dataList.get(position).getNote());
                 intent.putExtra("kode", dataList.get(position).getKode());
@@ -54,7 +57,7 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewViewHolder
         return dataList.size();
     }
 
-    public class ViewViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewViewHolder extends RecyclerView.ViewHolder {
         TextView tvNama, tvTlp, tvWaktu;
         CardView cvInbox;
 

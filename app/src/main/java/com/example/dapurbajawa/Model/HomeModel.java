@@ -1,4 +1,4 @@
-package com.example.dapurbajawa;
+package com.example.dapurbajawa.Model;
 
 public class HomeModel {
     String  id, nama, tanggal, nohp, note, kode, status;
