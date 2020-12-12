@@ -27,13 +27,14 @@
         android:layout_marginTop="22dp"
         android:background="@drawable/notif"/>
     <TextView
+        android:id="@+id/tvJumlah"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toRightOf="@+id/tvpesanan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="6dp"
-        android:text="4"
+        android:text="0"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/colorWhite"/>

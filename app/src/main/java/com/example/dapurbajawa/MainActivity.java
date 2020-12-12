@@ -17,8 +17,11 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     EditText  edUser,edpass;
@@ -64,11 +67,9 @@ public class MainActivity extends AppCompatActivity {
                         .getAsJSONObject(new JSONObjectRequestListener() {
                             @Override
                             public void onResponse(JSONObject response) {
-                                Log.d("hasil", "onResponse: ");
                                 try {
                                     JSONObject PAYLOAD = response.getJSONObject("PAYLOAD");
                                     boolean sukses = PAYLOAD.getBoolean("respon");
-                                    String roleuser = PAYLOAD.getString("roleuser");
                                     Log.d("PAYLOAD", "onResponse: " + PAYLOAD);
                                     if (sukses) {
                                         sp.edit().putString("logged","user").apply();
@@ -83,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
+
                             }
 
                             @Override
@@ -98,4 +100,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 }

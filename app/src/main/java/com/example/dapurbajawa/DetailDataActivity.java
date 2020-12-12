@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,9 +16,7 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.dapurbajawa.Adapter.DetailAdapter;
-import com.example.dapurbajawa.Adapter.ViewAdapter;
 import com.example.dapurbajawa.Model.DetailModel;
-import com.example.dapurbajawa.Model.HomeModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -117,20 +114,20 @@ public class DetailDataActivity extends AppCompatActivity {
                             @Override
                             public void onResponse(JSONObject response) {
                                 try {
-                                    JSONObject PAYLOAD = response.getJSONObject("hasil");
-                                    boolean sukses = PAYLOAD.getBoolean("respon");
-                                    String roleuser = PAYLOAD.getString("roleuser");
-                                    Log.d("PAYLOAD", "onResponse: " + PAYLOAD);
-                                    if (sukses) {
-                                        Toast.makeText(DetailDataActivity.this, "Sukses", Toast.LENGTH_SHORT).show();
+                                    JSONObject hasil = response.getJSONObject("hasil");
+                                    boolean sukses = hasil.getBoolean("respon");
+                                    if (sukses){
                                         Intent intent = new Intent(DetailDataActivity.this, ViewDataActivity.class);
                                         startActivity(intent);
-                                    } else {
+                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        finish();
+                                    }else {
                                         Toast.makeText(DetailDataActivity.this, "gagal", Toast.LENGTH_SHORT).show();
                                     }
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
+
                             }
 
                             @Override

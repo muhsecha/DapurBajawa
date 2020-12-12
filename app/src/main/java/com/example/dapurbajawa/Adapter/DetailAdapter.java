@@ -1,16 +1,15 @@
 package com.example.dapurbajawa.Adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dapurbajawa.Model.DetailModel;
-import com.example.dapurbajawa.Model.HomeModel;
 import com.example.dapurbajawa.R;
 
 import java.util.ArrayList;
