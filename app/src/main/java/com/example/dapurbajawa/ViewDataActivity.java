@@ -25,7 +25,7 @@ public class ViewDataActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ViewAdapter adapter;
-    
+    TextView tvJumlah;
 
     ArrayList<HomeModel> datalist;
 
@@ -38,6 +38,7 @@ public class ViewDataActivity extends AppCompatActivity {
 
         datalist = new ArrayList<>();
         Log.d("geo", "onCreate: ");
+        tvJumlah = findViewById(R.id.tvJumlah);
 
         AndroidNetworking.post(BaseUrl.url + "getnota.php")
                 .addBodyParameter("statusOrder", "orderDiterima")
@@ -65,6 +66,8 @@ public class ViewDataActivity extends AppCompatActivity {
 
                             }
 
+                            tvJumlah.setText(String.valueOf(data.length()));
+
                             adapter = new ViewAdapter(datalist);
 
                             RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(ViewDataActivity.this);
@@ -86,5 +89,7 @@ public class ViewDataActivity extends AppCompatActivity {
                         Log.d("geo", "onResponse: " + anError.getErrorDetail());
                     }
                 });
+
+
     }
 }

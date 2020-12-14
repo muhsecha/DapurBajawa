@@ -1,6 +1,7 @@
 package com.example.dapurbajawa.Adapter;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,7 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewViewHolder
         holder.cvInbox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.e("TAG", "onClick: " );
                 Intent intent = new Intent(holder.itemView.getContext(), DetailDataActivity.class);
                 intent.putExtra("id", dataList.get(position).getId());
                 intent.putExtra("nama", dataList.get(position).getNama());
@@ -48,6 +50,7 @@ public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewViewHolder
                 intent.putExtra("note", dataList.get(position).getNote());
                 intent.putExtra("kode", dataList.get(position).getKode());
                 intent.putExtra("status", dataList.get(position).getStatus());
+                holder.itemView.getContext().startActivity(intent);
             }
         });
     }

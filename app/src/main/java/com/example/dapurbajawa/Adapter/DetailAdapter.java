@@ -1,16 +1,16 @@
 package com.example.dapurbajawa.Adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.dapurbajawa.Model.DetailModel;
-import com.example.dapurbajawa.Model.HomeModel;
+import com.example.dapurbajawa.Model.ProdukModel;
 import com.example.dapurbajawa.R;
 
 import java.util.ArrayList;
@@ -18,10 +18,12 @@ import java.util.ArrayList;
 public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailViewHolder>{
 
     private ArrayList<DetailModel> dataList;
+    private ArrayList<ProdukModel> mProdukList;
     View viewku;
 
-    public DetailAdapter(ArrayList<DetailModel> dataList) {
+    public DetailAdapter(ArrayList<DetailModel> dataList, ArrayList<ProdukModel> mProdukList) {
         this.dataList = dataList;
+        this.mProdukList = mProdukList;
     }
 
     @NonNull
@@ -34,7 +36,11 @@ public class DetailAdapter extends RecyclerView.Adapter<DetailAdapter.DetailView
 
     @Override
     public void onBindViewHolder(@NonNull DetailViewHolder holder, int position) {
-        holder.tvNamaitem.setText(dataList.get(position).getKodeMakanan());
+        for (int i = 0; i < mProdukList.size(); i++) {
+            if (dataList.get(position).getKodeMakanan().equals(mProdukList.get(i).getKodeMakanan())){
+                holder.tvNamaitem.setText(mProdukList.get(i).getNamaMakanan());
+            }
+        }
         holder.tvJumlahitem.setText(dataList.get(position).getJumlah());
     }
 
