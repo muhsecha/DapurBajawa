@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
@@ -24,6 +25,7 @@ public class ViewDataActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     private ViewAdapter adapter;
+    
 
     ArrayList<HomeModel> datalist;
 
