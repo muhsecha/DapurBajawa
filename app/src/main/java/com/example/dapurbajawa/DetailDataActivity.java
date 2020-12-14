@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.example.dapurbajawa.Adapter.DetailAdapter;
 import com.example.dapurbajawa.Model.DetailModel;
+import com.example.dapurbajawa.Model.ProdukModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -30,6 +32,7 @@ public class DetailDataActivity extends AppCompatActivity {
     private DetailAdapter adapter;
 
     ArrayList<DetailModel> datalist;
+    private ArrayList mProdukList = new ArrayList<ProdukModel>();
 
     TextView tvname, tvNomer, tvCatatan;
     Button btnPost;
@@ -80,13 +83,45 @@ public class DetailDataActivity extends AppCompatActivity {
 
                             }
 
-                            adapter = new DetailAdapter(datalist);
+                            AndroidNetworking.post(BaseUrl.url + "getproduk.php")
+                                    .setTag("test")
+                                    .setPriority(Priority.LOW)
+                                    .build()
+                                    .getAsJSONObject(new JSONObjectRequestListener() {
+                                        @Override
+                                        public void onResponse(JSONObject response) {
+                                            try {
+                                                JSONArray data = response.getJSONArray("PAYLOAD");
+                                                for (int i = 0; i < data.length(); i++) {
+                                                    ProdukModel model = new ProdukModel();
+                                                    JSONObject object = data.getJSONObject(i);
+                                                    model.setId(object.getString("id"));
+                                                    model.setKodeMakanan(object.getString("kodeMakanan"));
+                                                    model.setNamaMakanan(object.getString("namaMakanan"));
+                                                    model.setJenisMakanan(object.getString("jenisMakanan"));
+                                                    model.setHargaMakanan(object.getString("hargaMakanan"));
+                                                    model.setAvatar(object.getString("avatar"));
+                                                    mProdukList.add(model);
+                                                }
+                                                Log.e("model", "onResponse: " + mProdukList.size());
 
-                            RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(DetailDataActivity.this);
+                                                adapter = new DetailAdapter(datalist, mProdukList);
 
-                            recyclerView.setLayoutManager(layoutManager);
+                                                RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(DetailDataActivity.this);
 
-                            recyclerView.setAdapter(adapter);
+                                                recyclerView.setLayoutManager(layoutManager);
+
+                                                recyclerView.setAdapter(adapter);
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onError(ANError anError) {
+
+                                        }
+                                    });
 
 
                         } catch (JSONException e) {
@@ -119,7 +154,6 @@ public class DetailDataActivity extends AppCompatActivity {
                                     if (sukses){
                                         Intent intent = new Intent(DetailDataActivity.this, ViewDataActivity.class);
                                         startActivity(intent);
-                                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
                                         finish();
                                     }else {
                                         Toast.makeText(DetailDataActivity.this, "gagal", Toast.LENGTH_SHORT).show();
@@ -140,4 +174,11 @@ public class DetailDataActivity extends AppCompatActivity {
         });
 
     }
+
+    private void fetchDataProdukAPI() {
+
+
+
+    }
+
 }

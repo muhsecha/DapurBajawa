@@ -16,6 +16,7 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.example.dapurbajawa.Model.ProdukModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
