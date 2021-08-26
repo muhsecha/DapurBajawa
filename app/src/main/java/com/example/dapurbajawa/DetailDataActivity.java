@@ -144,7 +144,7 @@ public class DetailDataActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 AndroidNetworking.post(BaseUrl.url + "editnota.php")
-                        .addBodyParameter("statusOrder", "selesai")
+                        .addBodyParameter("statusOrder", "orderDiterima")
                         .addBodyParameter("id", id)
                         .setTag("test")
                         .setPriority(Priority.MEDIUM)
@@ -170,7 +170,15 @@ public class DetailDataActivity extends AppCompatActivity {
 
                             @Override
                             public void onError(ANError anError) {
+                                Toast.makeText(DetailDataActivity.this, "error", Toast.LENGTH_SHORT).show();
 
+                                if (anError.getErrorCode() != 0) {
+                                    Log.d("TAG", "onError errorCode : " + anError.getErrorCode());
+                                    Log.d("TAG", "onError errorBody : " + anError.getErrorBody());
+                                    Log.d("TAG", "onError errorDetail : " + anError.getErrorDetail());
+                                } else {
+                                    Log.d("TAG", "onError errorDetail : " + anError.getErrorDetail());
+                                }
                             }
                         });
 

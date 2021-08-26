@@ -45,7 +45,7 @@ public class ViewDataActivity extends AppCompatActivity {
         tvJumlah = findViewById(R.id.tvJumlah);
 
         AndroidNetworking.post(BaseUrl.url + "getnota.php")
-                .addBodyParameter("statusOrder", "orderDiterima")
+                .addBodyParameter("statusOrder", "Tunggu")
                 .setTag("test")
                 .setPriority(Priority.MEDIUM)
                 .build()
@@ -64,7 +64,7 @@ public class ViewDataActivity extends AppCompatActivity {
                                 model.setTanggal(object.getString("tanggalNota"));
                                 model.setNohp(object.getString("nohpCustomer"));
                                 model.setNote(object.getString("note"));
-                                model.setKode(object.getString("kodeNota"));
+                                model.setKode(object.getString("id"));
                                 model.setStatus(object.getString("statusOrder"));
                                 datalist.add(model);
 
